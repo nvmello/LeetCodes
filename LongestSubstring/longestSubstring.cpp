@@ -27,21 +27,27 @@ public:
         int len = 0;
         unordered_map<char, int> umap; //unordered map to store unique chars
         vector<int> result;
+        int right = 0,
+            left = 0;
 
-        for (int i = 0; i < s.length(); i++)
+        while(right < s.length())   //while right window has not made it to the end of the string
         {
             // print_map(umap);     //test code to see what is in map
 
-            if(umap.count(s[i])){       //if a character is in the hash map
+            if(umap.count(s[right])){       //if a character is in the hash map
                 result.push_back(len);  //push the current length to result length vector
-                umap.clear();           // clear the hash map for a new substring
-                umap[s[i]];             //push the current char into the hash map
-                len = 1;                //set the new len to 1
+                umap.erase(s[left]);
+                left++;                 //move the left side of the window forward
+                len--;
+                // umap[s[right]];          //push the current char into the hash map
             } 
             else{                       //if the current char is not in the hash map
-                umap[s[i]] = i;             //add it to the hash map
-                len++;                  //increase the length by 1
+                umap[s[right]];         //add it to the hash map
+                len++;                  //increase the length by 1              dv   2
+                right++;            
             }
+             
+            // print_map(umap);
         }
         result.push_back(len);  //pushes final substring to the result length vector
 
@@ -57,5 +63,6 @@ public:
 
 int main(){
     Solution x;
-    cout<<x.lengthOfLongestSubstring("Hello")<<endl;
+    cout<<x.lengthOfLongestSubstring("abcabcbb")<<endl;
+
 }
