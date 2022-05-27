@@ -1,3 +1,8 @@
+#include<iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 class Solution {
 public:
     int maxArea(vector<int>& height) {
@@ -16,3 +21,9 @@ public:
         return *max_element(volume.begin(), volume.end()); //return the max value from volumes vector
     }
 };
+
+int main(){
+    Solution x;
+    vector<int> v {1,8,6,2,5,4,8,3,7};
+    cout<<x.maxArea(v)<<endl;
+}
